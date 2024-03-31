@@ -11,7 +11,7 @@ Employee has one Job and many incomes. Attributes are `uid`, `name`, `job`, `inc
 - `Job`
 Job attributes are `uid`, `name`, `wage`, `totalWorkingHours`.
 
-- Income
+- `Income`
 Income attributes are `bank`, `balance`, `employeeID`.
 
 

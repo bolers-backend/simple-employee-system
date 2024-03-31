@@ -7,7 +7,7 @@ const httpServer = http.createServer(app);
 app.use(express.json());
 
 // TODO: create this bellow
-app.use("/employee", );
+app.use("/user", EmployeeRouter);
 
 
 // Testing connection
