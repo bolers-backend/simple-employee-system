@@ -1,3 +1,1 @@
-node_modules
-
-# ignore some files
+/node_modules
