@@ -1,13 +1,13 @@
 import Employee from "../services/employee.service.js";
 
 class EmployeeController {
-	static allEmployee(req, res, next) {
-		const employee = Employee.all();
-		return res.status(200).json(employee);
+	static allEmployees(req, res, next) {
+		const employees = Employee.all();
+		return res.status(200).json(employees);
 	};
 
-	static getEmployee(req, res, next) {
-		const employee = Employee.get(req.params.uid);
+	static getEmployeeByUID(req, res, next) {
+		const employee = Employee.getByUID(req.params.uid);
 
 		// omit the password
 		employee.password = "";

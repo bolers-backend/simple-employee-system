@@ -21,7 +21,7 @@ Employee.prototype.create = function(data) {
 	return;
 };
 
-Employee.get = (uid) => {
+Employee.getByUID = (uid) => {
 	const data = fs.readFileSync("./datasource/" + uid + ".json");
 
 	const employee = JSON.parse(data);
