@@ -3,12 +3,10 @@ import EmployeeController from "../controller/employee.controller.js";
 
 const EmployeeRouter = express.Router();
 
-// EmployeeRouter.get("/", EmployeeController.allEmployee);
+EmployeeRouter.get("/get/:uid", EmployeeController.getEmployee);
 
-EmployeeRouter.get("/", () => {
-	return res.status(201).json({employee: "employee"});
-});
+EmployeeRouter.get("/all", EmployeeController.allEmployee);
 
-EmployeeRouter.post("/", EmployeeController.createEmployee);
+EmployeeRouter.post("/create", EmployeeController.createEmployee);
 
 export default EmployeeRouter;

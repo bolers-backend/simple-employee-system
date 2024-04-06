@@ -1,41 +1,35 @@
-import crypto from "crypto";
-import fs from "fs";
-import { dateNow } from "../utils/date.js";
+import Employee from "../services/employee.service.js";
 
 class EmployeeController {
 	static allEmployee(req, res, next) {
-		const response = [];
+		const employee = Employee.all();
+		return res.status(200).json(employee);
+	};
 
-		const filenames = fs.readdirSync("datasource");
-		for (const file of filenames) {
-			const data = fs.readFileSync("./datasource/"+ file);
+	static getEmployee(req, res, next) {
+		const employee = Employee.get(req.params.uid);
 
-			const user = JSON.parse(data);
-			user.accessAt = dateNow();
+		// omit the password
+		employee.password = "";
 
-			response.push(user);
-		}
-
-		return res.status(200).json(response)
+		return res.status(200).json(employee);
 	};
 
 	static createEmployee(req, res, next) {
-		const user = req.body;
-		if (!user.name || !user.email || !user.password || !user.nim) {
+		const data = req.body;
+		if (!data.name || !data.email || !data.password || !data.nim) {
 			return res.status(400).json({msg: "Missing required fields!"});
 		}
 
-		user.createdAt = dateNow();
-		user.id = crypto.randomUUID();
+		const employee = new Employee();
+		employee.create(data);
 
-		fs.writeFileSync(
-			"datasource/" + user.id + ".json",
-			JSON.stringify(user)
-		);
+		// omit the password
+		employee.password = "";
 
 		return res.status(201).json({
-			msg: "success add user",
-			user: user
+			msg: "success add employee",
+			user: employee
 		});
 	}
 }
