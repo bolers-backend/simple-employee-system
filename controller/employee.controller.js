@@ -6,9 +6,9 @@ class EmployeeController {
 	static allEmployee(req, res, next) {
 		const response = [];
 
-		const filenames = fs.readdirSync("datasource");
+		const filenames = fs.readdirSync("datasource/employee/");
 		for (const file of filenames) {
-			const data = fs.readFileSync("./datasource/"+ file);
+			const data = fs.readFileSync("./datasource/employee/"+ file);
 
 			const user = JSON.parse(data);
 			user.accessAt = dateNow();
@@ -29,7 +29,7 @@ class EmployeeController {
 		user.id = crypto.randomUUID();
 
 		fs.writeFileSync(
-			"datasource/" + user.id + ".json",
+			"datasource/employee/" + user.id + ".json",
 			JSON.stringify(user)
 		);
 
