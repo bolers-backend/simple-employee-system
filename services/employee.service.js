@@ -14,7 +14,7 @@ Employee.prototype.create = function(data) {
 	this.uid = crypto.randomUUID();
 
 	fs.writeFileSync(
-		"datasource/" + this.uid + ".json",
+		"datasource/employee/" + this.uid + ".json",
 		JSON.stringify(this)
 	);
 
@@ -22,7 +22,7 @@ Employee.prototype.create = function(data) {
 };
 
 Employee.getByUID = (uid) => {
-	const data = fs.readFileSync("./datasource/" + uid + ".json");
+	const data = fs.readFileSync("./datasource/employee/" + uid + ".json");
 
 	const employee = JSON.parse(data);
 	employee.accessAt = dateNow();
@@ -33,9 +33,9 @@ Employee.getByUID = (uid) => {
 Employee.all = () => {
 	const employees = [];
 
-	const filenames = fs.readdirSync("datasource");
+	const filenames = fs.readdirSync("datasource/employee");
 	for (const file of filenames) {
-		const data = fs.readFileSync("./datasource/"+ file);
+		const data = fs.readFileSync("./datasource/employee/"+ file);
 
 		const employee = JSON.parse(data);
 
