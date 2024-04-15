@@ -1,42 +1,52 @@
-import crypto from "crypto";
 import fs from "fs";
+import Employee from "./employee.service.js";
 import { dateNow } from "../utils/date.js";
-import { response } from "express";
 
 function Income() {};
 
 Income.prototype.create = function(data) {
-	this.name = data.name;
+	let incomes = [];
+	try {
+		incomes = JSON.parse(fs.readFileSync("./datasource/income/incomes.json"));
+	} catch (error) {
+		if (error.code !== "ENOENT") {
+			throw error;
+		}
+	}
+	
 	this.bank = data.bank;
 	this.balance = data.balance;
-	this.employeeID = data.employeeId;
+
+	let employee = {};
+	try {
+		employee = Employee.getByUID(data.employeeID);
+	} catch(error) {
+		throw error;
+	}
+
+	this.employeeID = employee.uid;
 
 	this.createdAt = dateNow();
-	this.uid = crypto.randomUUID();
+
+	incomes.push(this);
 
 	fs.writeFileSync(
-		"datasource/income/" + this.uid + ".json",
-		JSON.stringify(this)
+		"datasource/income/incomes.json",
+		JSON.stringify(incomes)
 	);
 
 	return;
 };
 
 Income.all = () => {
-	const income = [];
+	const data = fs.readFileSync("./datasource/income/incomes.json");
+	const incomes = JSON.parse(data);
 
-	const filenames = fs.readdirSync("datasource/income/");
-	for (const file of filenames) {
-		const data = fs.readFileSync("./datasource/income/"+ file);
-
-		const income = JSON.parse(data);
-
-		Income.accessAt = dateNow();
-
-		response.push(income);
+	for (const income of incomes) {
+		income.accessAt = dateNow();
 	}
 
-	return income;
+	return incomes;
 };
 
 export default Income;

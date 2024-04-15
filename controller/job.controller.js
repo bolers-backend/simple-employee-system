@@ -2,23 +2,24 @@ import Job from "../services/job.service.js";
 
 class jobController{
 
+    static AllJobs(req,res,next){
+        const response = Job.all();
+        return res.status(200).json(response);
+    };
+
     static CreateJob(req,res,next){
-        const job = req.body;
-        if(!job.name || !job.wage || !job.totalWorkingHours){
-            return res.status(500).json({msg:"Missing Required Fields!"});
+        const data = req.body;
+        if(!data.name || !data.wage || !data.totalWorkingHours){
+            return res.status(500).json({msg: "Missing Required Fields!"});
         } 
-        const jobs = new Job();
-		jobs.create(job);
+        const job = new Job();
+		job.create(data);
 
         return res.status(201).json({
-            msg: "success add employee",
-            user: jobs
+            msg: "success add job",
+            user: job
         });
-    }
-    static AllJob(req,res,next){
-        const response = Job.all();
-		return res.status(200).json(response);
-    }
-}
+    };
+};
 
 export default jobController;

@@ -20,30 +20,38 @@ Job.prototype.create = function(data) {
 	return;
 };
 
-Job.all = () => {
-	const response = [];
-
-	const filenames = fs.readdirSync("datasource/job/");
-	for (const file of filenames) {
-		const data = fs.readFileSync("./datasource/job/"+ file);
-
-		const Job = JSON.parse(data);
-
-		Job.accessAt = dateNow();
-
-		response.push(Job);
+Job.getByUID = (uid) => {
+	let job = {};
+	try {
+		job = JSON.parse(fs.readFileSync("./datasource/job/" + uid + ".json"));
+	} catch(error) {
+		if (error.code === "ENOENT") {
+			throw new Error("_uid_unknown_");
+		} else {
+			throw error;
+		}
 	}
 
-	return response;
-};
-
-Job.getByUID = (uid) => {
-	const data = fs.readFileSync("./datasource/job/" + uid + ".json");
-
-	const job = JSON.parse(data);
 	job.accessAt = dateNow();
 
 	return job;
+};
+
+Job.all = () => {
+	const jobs = [];
+
+	const filenames = fs.readdirSync("datasource/job");
+	for (const file of filenames) {
+		const data = fs.readFileSync("./datasource/job/"+ file);
+
+		const job = JSON.parse(data);
+
+		job.accessAt = dateNow();
+
+		jobs.push(job);
+	}
+
+	return jobs;
 };
 
 export default Job;

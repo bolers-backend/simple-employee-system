@@ -1,21 +1,32 @@
 import Income from "../services/income.service.js";
 
 class incomeController {
-	static allIncome(req, res, next) {
-		const incomee = Income.all();
-		return res.status(200).json(incomee);
+	static allIncomes(req, res, next) {
+		const incomes = Income.all();
+		return res.status(200).json(incomes);
 	};
 
 	static createIncome(req, res, next) {
-		const income = req.body;
-		if (!income.name || !income.bank || !income.balance || !income.employeeID) {
+		const data = req.body;
+		if (!data.bank || !data.balance || !data.employeeID) {
 			return res.status(400).json({msg: "Missing required fields!"});
 		}
 
-		const incomes = new Income();
-		incomes.create(income);
+		const income = new Income();
+		try {
+			income.create(data)
+		} catch(error) {
+			if (error.message === "_uid_unknown_") {
+				return res.status(400).json({msg: "ID Unknown!"});
+			}
 
-			return res.status(200).json(incomes);
+			return res.status(500).json({msg: "Server Error!"});
+		}
+
+		return res.status(201).json({
+			msg: "success add income",
+			user: income
+		});
 	}
 }
 

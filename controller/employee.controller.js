@@ -7,7 +7,16 @@ class EmployeeController {
 	};
 
 	static getEmployeeByUID(req, res, next) {
-		const employee = Employee.getByUID(req.params.uid);
+		let employee = {};
+		try {
+			employee = Employee.getByUID(req.params.uid);
+		} catch(error) {
+			if (error.message === "_uid_unknown_") {
+				return res.status(400).json({msg: "ID Unknown!"});
+			}
+
+			return res.status(500).json({msg: "Server Error!"});
+		}
 
 		const employeeDisplayed = {
 			name: employee.name,
@@ -21,12 +30,20 @@ class EmployeeController {
 
 	static createEmployee(req, res, next) {
 		const data = req.body;
-		if (!data.name || !data.email || !data.password || !data.nip) {
+		if (!data.name || !data.email || !data.password || !data.nip || !data.jobUid) {
 			return res.status(400).json({msg: "Missing required fields!"});
 		}
 
 		const employee = new Employee();
-		employee.create(data);
+		try {
+			employee.create(data);
+		} catch(error) {
+			if (error.message === "_uid_unknown_") {
+				return res.status(400).json({msg: "ID Unknown!"});
+			}
+
+			return res.status(500).json({msg: "Server Error!"});
+		}
 
 		// omit the password
 		employee.password = "";
@@ -35,7 +52,7 @@ class EmployeeController {
 			msg: "success add employee",
 			user: employee
 		});
-	}
-}
+	};
+};
 
 export default EmployeeController;

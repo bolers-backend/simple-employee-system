@@ -11,7 +11,13 @@ Employee.prototype.create = function(data) {
 	this.email = data.email;
 	this.password = data.password;
 
-	const job = Job.getByUID(data.jobUid);
+	let job = {};
+	try {
+		job = Job.getByUID(data.jobUid);
+	} catch(error) {
+		throw error;
+	}
+
 	this.job = {
 		name: job.name,
 		wage: job.wage,
@@ -30,9 +36,17 @@ Employee.prototype.create = function(data) {
 };
 
 Employee.getByUID = (uid) => {
-	const data = fs.readFileSync("./datasource/employee/" + uid + ".json");
+	let employee = {};
+	try {
+		employee = JSON.parse(fs.readFileSync("./datasource/employee/" + uid + ".json"));
+	} catch(error) {
+		if (error.code === "ENOENT") {
+			throw new Error("_uid_unknown_");
+		} else {
+			throw error;
+		}
+	}
 
-	const employee = JSON.parse(data);
 	employee.accessAt = dateNow();
 
 	return employee;
