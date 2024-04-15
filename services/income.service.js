@@ -25,9 +25,9 @@ Income.prototype.create = function(data) {
 Income.all = () => {
 	const income = [];
 
-	const filenames = fs.readdirSync("datasource");
+	const filenames = fs.readdirSync("datasource/income/");
 	for (const file of filenames) {
-		const data = fs.readFileSync("./datasource/"+ file);
+		const data = fs.readFileSync("./datasource/income/"+ file);
 
 		const income = JSON.parse(data);
 
