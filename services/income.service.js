@@ -15,7 +15,7 @@ Income.prototype.create = function(data) {
 	this.uid = crypto.randomUUID();
 
 	fs.writeFileSync(
-		"datasource/" + this.uid + ".json",
+		"datasource/income/" + this.uid + ".json",
 		JSON.stringify(this)
 	);
 
