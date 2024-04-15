@@ -15,7 +15,7 @@ class incomeController {
 		const incomes = new Income();
 		incomes.create(income);
 
-			return res.status(200).json
+			return res.status(200).json(incomes);
 	}
 }
 
