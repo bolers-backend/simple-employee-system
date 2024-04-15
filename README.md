@@ -6,7 +6,7 @@ Simple Employee System with Express JS
 ## Entity
 
 - `Employee`
-Employee has one Job and many incomes. Attributes are `uid`, `name`, `nim`, `email`, `password`, `job`, `income`, `totalIncome`
+Employee has one Job and many incomes. Attributes are `uid`, `name`, `nip`, `email`, `password`, `job`, `income`, `totalIncome`
 
 - `Job`
 Job attributes are `uid`, `name`, `wage`, `totalWorkingHours`.

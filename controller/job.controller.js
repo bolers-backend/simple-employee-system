@@ -10,10 +10,14 @@ class jobController{
         const jobs = new Job();
 		jobs.create(job);
 
+        return res.status(201).json({
+            msg: "success add employee",
+            user: jobs
+        });
     }
     static AllJob(req,res,next){
         const response = Job.all();
-		return res.status(200).json(response)
+		return res.status(200).json(response);
     }
 }
 

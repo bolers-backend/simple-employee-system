@@ -9,15 +9,19 @@ class EmployeeController {
 	static getEmployeeByUID(req, res, next) {
 		const employee = Employee.getByUID(req.params.uid);
 
-		// omit the password
-		employee.password = "";
+		const employeeDisplayed = {
+			name: employee.name,
+			nip: employee.nip,
+			email: employee.email,
+			job: employee.job,
+		};
 
-		return res.status(200).json(employee);
+		return res.status(200).json(employeeDisplayed);
 	};
 
 	static createEmployee(req, res, next) {
 		const data = req.body;
-		if (!data.name || !data.email || !data.password || !data.nim) {
+		if (!data.name || !data.email || !data.password || !data.nip) {
 			return res.status(400).json({msg: "Missing required fields!"});
 		}
 

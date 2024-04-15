@@ -37,6 +37,13 @@ Job.all = () => {
 	return response;
 };
 
+Job.getByUID = (uid) => {
+	const data = fs.readFileSync("./datasource/job/" + uid + ".json");
 
+	const job = JSON.parse(data);
+	job.accessAt = dateNow();
+
+	return job;
+};
 
 export default Job;

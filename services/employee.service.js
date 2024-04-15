@@ -1,14 +1,22 @@
 import crypto from "crypto";
 import fs from "fs";
+import Job from "./job.service.js";
 import { dateNow } from "../utils/date.js";
 
 function Employee() {};
 
 Employee.prototype.create = function(data) {
 	this.name = data.name;
-	this.nim = data.nim;
+	this.nip = data.nip;
 	this.email = data.email;
 	this.password = data.password;
+
+	const job = Job.getByUID(data.jobUid);
+	this.job = {
+		name: job.name,
+		wage: job.wage,
+		totalWorkingHours: job.totalWorkingHours,
+	};
 
 	this.createdAt = dateNow();
 	this.uid = crypto.randomUUID();
