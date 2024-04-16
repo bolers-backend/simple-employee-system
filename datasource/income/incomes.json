@@ -1,1 +1,44 @@
-[{"bank":"BRI","balance":9000000,"employeeID":"444abcf7-6064-4590-8d3c-29b3dfcc63a1","createdAt":"2024-4-16 0:58:23"},{"bank":"BNI","balance":8000000,"employeeID":"444abcf7-6064-4590-8d3c-29b3dfcc63a1","createdAt":"2024-4-16 0:59:3"},{"bank":"BCA","balance":10000000,"employeeID":"444abcf7-6064-4590-8d3c-29b3dfcc63a1","createdAt":"2024-4-16 0:59:50"},{"bank":"Jago","balance":15000000,"employeeID":"89fef407-1b00-4b3a-b07a-8aceb0ae69e6","createdAt":"2024-4-16 1:43:38"}]
+[
+  {
+    "bank": "BNI",
+    "balance": 12000000,
+    "employeeID": "b0317a27-c41f-47aa-b781-4a23b0ac8d82",
+    "createdAt": "2024-4-16 12:20:56"
+  },
+  {
+    "bank": "BRI",
+    "balance": 26000000,
+    "employeeID": "b0317a27-c41f-47aa-b781-4a23b0ac8d82",
+    "createdAt": "2024-4-16 12:21:32"
+  },
+  {
+    "bank": "BCA",
+    "balance": 154000000,
+    "employeeID": "b0317a27-c41f-47aa-b781-4a23b0ac8d82",
+    "createdAt": "2024-4-16 12:22:0"
+  },
+  {
+    "bank": "BCA",
+    "balance": 17000000,
+    "employeeID": "66e9aad8-a3ec-4e29-b8c9-5f4307ea8c58",
+    "createdAt": "2024-4-16 12:22:28"
+  },
+  {
+    "bank": "Mandiri",
+    "balance": 4000000,
+    "employeeID": "66e9aad8-a3ec-4e29-b8c9-5f4307ea8c58",
+    "createdAt": "2024-4-16 12:22:40"
+  },
+  {
+    "bank": "Seabank",
+    "balance": 100000,
+    "employeeID": "ab88cad6-e048-475c-995a-4edb6576e153",
+    "createdAt": "2024-4-16 12:23:4"
+  },
+  {
+    "bank": "Jago",
+    "balance": 50000,
+    "employeeID": "ab88cad6-e048-475c-995a-4edb6576e153",
+    "createdAt": "2024-4-16 12:23:25"
+  }
+]

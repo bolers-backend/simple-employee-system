@@ -1,0 +1,14 @@
+{
+  "name": "Hendra",
+  "nip": 4121230013,
+  "email": "hendra@gg.bat",
+  "password": "hendra321",
+  "jobID": "5V6qn9zJEt",
+  "job": {
+    "name": "Programmer",
+    "wage": 7708376,
+    "totalWorkingHours": 170
+  },
+  "createdAt": "2024-4-16 12:13:42",
+  "uid": "bfe144eb-c6df-44eb-a2de-fefe20d02494"
+}

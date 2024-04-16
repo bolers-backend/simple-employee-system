@@ -1,0 +1,14 @@
+{
+  "name": "Rifqi",
+  "nip": 4121230012,
+  "email": "rifqi@anjay.cuy",
+  "password": "rifqi321",
+  "jobID": "5V6qn9zJEt",
+  "job": {
+    "name": "Programmer",
+    "wage": 7708376,
+    "totalWorkingHours": 170
+  },
+  "createdAt": "2024-4-16 12:13:10",
+  "uid": "d2617baa-dec6-48d7-92ff-8c882ad67317"
+}

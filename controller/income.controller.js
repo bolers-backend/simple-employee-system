@@ -19,6 +19,7 @@ class incomeController {
 			if (error.message === "_uid_unknown_") {
 				return res.status(400).json({msg: "ID Unknown!"});
 			}
+			console.log(error);
 
 			return res.status(500).json({msg: "Server Error!"});
 		}

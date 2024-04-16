@@ -14,7 +14,7 @@ Job.prototype.create = function(data) {
 
 	fs.writeFileSync(
 		"datasource/job/" + this.uid + ".json",
-		JSON.stringify(this)
+		JSON.stringify(this, null, 2)
 	);
 
 	return;

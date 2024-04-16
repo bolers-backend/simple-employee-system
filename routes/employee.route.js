@@ -12,4 +12,10 @@ EmployeeRouter.get("/all", EmployeeController.allEmployees);
 // localhost:3000/employee/create POST
 EmployeeRouter.post("/create", EmployeeController.createEmployee);
 
+// localhost:3000/employee/update PUT
+EmployeeRouter.put("/update", EmployeeController.updateEmployee);
+
+// localhost:3000/employee/delete DELETE
+EmployeeRouter.delete("/delete", EmployeeController.deleteEmployee);
+
 export default EmployeeRouter;
