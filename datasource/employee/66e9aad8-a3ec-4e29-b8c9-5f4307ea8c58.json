@@ -1,0 +1,14 @@
+{
+  "name": "Siti Nurbay",
+  "nip": 4121230015,
+  "email": "mpok@siti.nih",
+  "password": "mpoksiti",
+  "jobID": "o0IOcxIr_6",
+  "job": {
+    "name": "Perawat",
+    "wage": 3586047,
+    "totalWorkingHours": 173
+  },
+  "createdAt": "2024-4-16 12:15:14",
+  "uid": "66e9aad8-a3ec-4e29-b8c9-5f4307ea8c58"
+}

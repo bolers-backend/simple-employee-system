@@ -12,6 +12,11 @@ Income.prototype.create = function(data) {
 		if (error.code !== "ENOENT") {
 			throw error;
 		}
+
+		fs.writeFileSync(
+			"datasource/income/incomes.json",
+			JSON.stringify(incomes, null, 2)
+		);
 	}
 	
 	this.bank = data.bank;
@@ -32,7 +37,7 @@ Income.prototype.create = function(data) {
 
 	fs.writeFileSync(
 		"datasource/income/incomes.json",
-		JSON.stringify(incomes)
+		JSON.stringify(incomes, null, 2)
 	);
 
 	return;

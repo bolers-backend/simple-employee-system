@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import fs from "fs";
 import Job from "./job.service.js";
+import Income from "./income.service.js";
 import { dateNow } from "../utils/date.js";
 
 function Employee() {};
@@ -13,11 +14,12 @@ Employee.prototype.create = function(data) {
 
 	let job = {};
 	try {
-		job = Job.getByUID(data.jobUid);
+		job = Job.getByUID(data.jobID);
 	} catch(error) {
 		throw error;
 	}
 
+	this.jobID = data.jobID
 	this.job = {
 		name: job.name,
 		wage: job.wage,
@@ -29,11 +31,55 @@ Employee.prototype.create = function(data) {
 
 	fs.writeFileSync(
 		"datasource/employee/" + this.uid + ".json",
-		JSON.stringify(this)
+		JSON.stringify(this, null, 2)
 	);
 
 	return;
 };
+
+Employee.update = (newData) => {
+	let employee = {};
+	try {
+		employee = JSON.parse(fs.readFileSync("./datasource/employee/" + newData.uid + ".json"));
+	} catch(error) {
+		if (error.code === "ENOENT") {
+			throw new Error("_uid_unknown_");
+		} else {
+			throw error;
+		}
+	}
+
+	if (employee.password !== newData.password) {
+		throw new Error("_invalid_password_");
+	}
+
+	employee.name = newData.name || employee.name;
+	employee.nip = newData.nip || employee.nip;
+	employee.email = newData.email || employee.email;
+	employee.jobID = newData.jobID || employee.jobID;
+
+	let newJob = {};
+	try {
+		newJob = Job.getByUID(jobID);
+	} catch(error) {
+		throw error;
+	}
+
+	employee.job = {
+		name: newJob.name,
+		wage: newJob.wage,
+		totalWorkingHours: newJob.totalWorkingHours,
+	};
+
+	employee.updateAt = dateNow();
+
+	fs.writeFileSync(
+		"datasource/employee/" + employee.uid + ".json",
+		JSON.stringify(employee, null, 2)
+	);
+
+	return employee;
+}
 
 Employee.getByUID = (uid) => {
 	let employee = {};
@@ -44,6 +90,15 @@ Employee.getByUID = (uid) => {
 			throw new Error("_uid_unknown_");
 		} else {
 			throw error;
+		}
+	}
+
+	employee.income = [];
+	employee.totalIncome = 0;
+	for (const income of Income.all()) {
+		if (income.employeeID === employee.uid) {
+			employee.income.push(income);
+			employee.totalIncome += income.balance;
 		}
 	}
 

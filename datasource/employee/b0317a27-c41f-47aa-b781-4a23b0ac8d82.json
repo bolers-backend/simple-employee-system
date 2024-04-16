@@ -1,0 +1,14 @@
+{
+  "name": "Udin Sedunia",
+  "nip": 4121230014,
+  "email": "udin@se.dunia",
+  "password": "udinsedunia",
+  "jobID": "z3JE_6Gd3_",
+  "job": {
+    "name": "Dokter",
+    "wage": 4602400,
+    "totalWorkingHours": 160
+  },
+  "createdAt": "2024-4-16 12:14:30",
+  "uid": "b0317a27-c41f-47aa-b781-4a23b0ac8d82"
+}
