@@ -47,11 +47,11 @@ DELETE:
 		Create new employee data.
 
 		payload: {
-			"name": <String><required>,
-			"email": <String><required>,
-			"password" : <String><required>,
-			"nip": <Number><required>,
-			"jobUid": <String><required>
+			"name": String required,
+			"email": String required,
+			"password": String required,
+			"nip": Number required,
+			"jobUid": String required
 		}
 
 	- `PUT` /employee/update
@@ -59,12 +59,12 @@ DELETE:
 		Update existing employee data.
 
 		payload: {
-			"uid": <String><required>,
-			"password" : <String><required>,
-			"name": <String><optional>,
-			"email": <String><optional>,
-			"nip": <Number><optional>,
-			"jobUid": <String><optional>
+			"uid": String required,
+			"password": String required,
+			"name": String optional,
+			"email": String optional,
+			"nip": Number optional,
+			"jobUid": String optional
 		}
 
 - /income
@@ -77,9 +77,9 @@ DELETE:
 		Create new income data according to employee ID.
 
 		payload: {
-			"bank": <String><required>,
-			"balance": <Number><required>,
-			"employeeID": <String><required>
+			"bank": String required,
+			"balance": Number required,
+			"employeeID": String required
 		}
 
 - /job
@@ -92,9 +92,9 @@ DELETE:
 		Create new job data.
 
 		payload: {
-			"name": <String><required>,
-			"wage": <Number><required>,
-			"totalWorkingHours": <Number><required>
+			"name": String required,
+			"wage": Number required,
+			"totalWorkingHours": Number required
 		}
 
 ## Author
