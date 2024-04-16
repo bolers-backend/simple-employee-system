@@ -15,6 +15,7 @@ class EmployeeController {
 				return res.status(400).json({msg: "ID Unknown!"});
 			}
 
+			console.error(error);
 			return res.status(500).json({msg: "Server Error!"});
 		}
 
@@ -53,6 +54,7 @@ class EmployeeController {
 				return res.status(400).json({msg: "ID Unknown!"});
 			}
 
+			console.error(error);
 			return res.status(500).json({msg: "Server Error!"});
 		}
 
@@ -81,8 +83,7 @@ class EmployeeController {
 				return res.status(401).json({msg: "Unauthorized!"});
 			}
 
-			console.log(error);
-
+			console.error(error);
 			return res.status(500).json({msg: "Server Error!"});
 		}
 
@@ -92,6 +93,30 @@ class EmployeeController {
 		return res.status(200).json({
 			msg: "success update employee",
 			user: employee
+		});
+	};
+
+	static deleteEmployee(req, res, next) {
+		const data = req.body;
+		if (!data.uid || !data.password) {
+			return res.status(400).json({msg: "Missing required fields!"});
+		}
+
+		try {
+			Employee.delete(data);
+		} catch(error) {
+			if (error.message === "_uid_unknown_") {
+				return res.status(400).json({msg: "ID Unknown!"});
+			} else if (error.message === "_invalid_password_") {
+				return res.status(401).json({msg: "Unauthorized!"});
+			}
+			
+			console.error(error);
+			return res.status(500).json({msg: "Server Error!"});
+		}
+
+		return res.status(204).json({
+			msg: "success delete employee"
 		});
 	};
 };

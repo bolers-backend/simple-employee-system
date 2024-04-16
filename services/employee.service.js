@@ -81,6 +81,32 @@ Employee.update = (newData) => {
 	return employee;
 }
 
+Employee.delete = (data) => {
+	let employee = {};
+	try {
+		employee = JSON.parse(fs.readFileSync("./datasource/employee/" + data.uid + ".json"));
+	} catch(error) {
+		if (error.code === "ENOENT") {
+			throw new Error("_uid_unknown_");
+		} else {
+			throw error;
+		}
+	}
+
+	if (employee.password !== data.password) {
+		throw new Error("_invalid_password_");
+	}
+
+	try {
+		fs.unlinkSync("./datasource/employee/" + employee.uid + ".json");
+	} catch(error) {
+		throw error;
+	}
+
+	console.log("Successfully deleted: ", "./datasource/employee/" + employee.uid + ".json");
+	return;
+}
+
 Employee.getByUID = (uid) => {
 	let employee = {};
 	try {

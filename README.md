@@ -15,22 +15,6 @@ Job attributes are `uid`, `name`, `wage`, `totalWorkingHours`.
 Income attributes are `bank`, `balance`, `employeeID`.
 
 
-## TODO
-
-CREATE:
-- Create new Employee
-- Create new Job
-- Create new Income
-
-READ:
-- Read existing Employee
-
-UPDATE:
-- Update Employee data
-
-DELETE:
-- Delete existing Employee
-
 
 ## Endpoint
 - /employee
@@ -51,7 +35,7 @@ DELETE:
 			"email": String required,
 			"password": String required,
 			"nip": Number required,
-			"jobUid": String required
+			"jobID": String required
 		}
 
 	- `PUT` /employee/update
@@ -64,7 +48,16 @@ DELETE:
 			"name": String optional,
 			"email": String optional,
 			"nip": Number optional,
-			"jobUid": String optional
+			"jobID": String optional
+		}
+
+	- `DELETE` /employee/delete
+
+		Delete existing employee data.
+
+		payload: {
+			"uid": String required,
+			"password": String required
 		}
 
 - /income
