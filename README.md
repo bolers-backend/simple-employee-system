@@ -87,7 +87,7 @@ DELETE:
 
 		Retrieve all existing job data.
 
-	- `POST` /employee/create
+	- `POST` /job/create
 
 		Create new job data.
 
