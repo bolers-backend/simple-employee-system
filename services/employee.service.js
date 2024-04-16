@@ -60,7 +60,7 @@ Employee.update = (newData) => {
 
 	let newJob = {};
 	try {
-		newJob = Job.getByUID(jobID);
+		newJob = Job.getByUID(employee.jobID);
 	} catch(error) {
 		throw error;
 	}

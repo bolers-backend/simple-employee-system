@@ -1,7 +1,7 @@
 {
   "name": "Ari",
   "nip": 4121230011,
-  "email": "ari@the.best",
+  "email": "ari@ok.mantap",
   "password": "ari321",
   "jobID": "5V6qn9zJEt",
   "job": {
@@ -10,5 +10,6 @@
     "totalWorkingHours": 170
   },
   "createdAt": "2024-4-16 12:12:19",
-  "uid": "ab88cad6-e048-475c-995a-4edb6576e153"
+  "uid": "ab88cad6-e048-475c-995a-4edb6576e153",
+  "updateAt": "2024-4-16 12:53:35"
 }
